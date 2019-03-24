@@ -70,7 +70,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.country, this.state.year, this.state.month, this.state.festiveDays)
+    // console.log(this.state.country, this.state.year, this.state.month, this.state.festiveDays)
     return (
       <div className="home-container">
         <h1 className="home-title">Festive Days</h1>

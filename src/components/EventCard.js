@@ -8,7 +8,14 @@ class EventCard extends Component {
 
     return (
       <div className="eventcard-main-container">
-        <h2 className="event-subheading">{`${country} Events from ${month} in ${year} `}</h2>
+        {
+          month === "all" &&
+          <h2 className="eventcard-subheading">{`${country} Events from all months in ${year} `}</h2>
+        }
+        {
+          month !== "all" &&
+          <h2 className="eventcard-subheading">{`${country} Events from ${month} in ${year} `}</h2>
+        }
         <div className="cards-container">
         {this.props.festiveDays.map((event, index)  => {
           return(

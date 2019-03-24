@@ -12,6 +12,7 @@ class MonthsFilter extends Component {
         <Dropdown.Toggle split variant="info" id="dropdown-split-basic" />
 
         <Dropdown.Menu>
+          <Dropdown.Item onClick={() => this.props.onChangeMonth("all")}>All</Dropdown.Item>
           <Dropdown.Item onClick={() => this.props.onChangeMonth("January")}>January</Dropdown.Item>
           <Dropdown.Item onClick={() => this.props.onChangeMonth("February")}>February</Dropdown.Item>
           <Dropdown.Item onClick={() => this.props.onChangeMonth("March")}>March</Dropdown.Item>
