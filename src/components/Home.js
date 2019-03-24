@@ -14,9 +14,9 @@ class Home extends Component {
 
     this.state = ({
       year:2019,
-      country: "US",
+      country: "MX",
       festiveDays:[],
-      month: ''
+      month: "all"
     })
   }
 
@@ -43,7 +43,10 @@ class Home extends Component {
       },
     }).then(response => response.json())
       .then(data => {
-        // console.log(data)
+        const festiveDays = data
+        this.setState({
+          festiveDays:festiveDays
+        })
       })
   }
 
@@ -69,15 +72,17 @@ class Home extends Component {
   render() {
     console.log(this.state.country, this.state.year, this.state.month, this.state.festiveDays)
     return (
-      <React.Fragment>
-        <h1>Fechas célebres</h1>
-        <div className="home-container">
-          <CountriesFilter country={this.state.country} onChangeCountry={this.onChangeCountry}/>
-          <YearsFilter year={this.state.year} onChangeYear={this.onChangeYear}/>
-          <MonthsFilter month={this.state.month} onChangeMonth={this.onChangeMonth} />
+      <div className="home-container">
+        <h1 className="home-title">Festive Days</h1>
+        <div className="filters-cards-container">
+          <div className="home-filters-container">
+            <CountriesFilter country={this.state.country} onChangeCountry={this.onChangeCountry}/>
+            <YearsFilter year={this.state.year} onChangeYear={this.onChangeYear}/>
+            <MonthsFilter month={this.state.month} onChangeMonth={this.onChangeMonth} />
+          </div>
+          <EventCard festiveDays={this.state.festiveDays} month={this.state.month} year={this.state.year} country={this.state.country}/>
         </div>
-        <EventCard festiveDays={this.state.festiveDays} month={this.state.month}/>
-      </React.Fragment>
+      </div>
     );
   }
 }

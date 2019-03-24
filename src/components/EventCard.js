@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
 const moment = require('moment');
 
 class EventCard extends Component {
   render() {
-    const month = this.props.month
+    const { month, year, country } = this.props
 
     return (
-      <React.Fragment>
-        <h2>EventCard</h2>
+      <div className="eventcard-main-container">
+        <h2 className="event-subheading">{`${country} Events from ${month} in ${year} `}</h2>
+        <div className="cards-container">
         {this.props.festiveDays.map((event, index)  => {
           return(
-            <div key={index}>
+            <Card className={month === moment(event.date).format('MMMM') || month === 'all' ? 'card': 'empty-card'} key={index}>
               {
-                month === '' &&
-                <React.Fragment>
-                  <h3>{event.name}</h3>
-                  <h4>{event.date}</h4>
-                </React.Fragment>
+                month === 'all' &&
+                <Card.Body>
+                  <Card.Title>{event.name}</Card.Title>
+                  <Card.Text>{event.date}</Card.Text>
+                </Card.Body>
               }
               {
                 month === moment(event.date).format('MMMM') &&
-                <React.Fragment>
-                  <h3>{event.name}</h3>
-                  <h4>{event.date}</h4>
-                </React.Fragment>
+                <Card.Body>
+                  <Card.Title>{event.name}</Card.Title>
+                  <Card.Text>{event.date}</Card.Text>
+                </Card.Body>
               }
-            </div>
+            </Card>
           );
         })
         }
-      </React.Fragment>
+        </div>
+      </div>
     );
   }
 }
